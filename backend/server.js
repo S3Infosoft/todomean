@@ -1,3 +1,5 @@
+
+/*
 var express=require('express');
 var cors=require('cors');
 var bodyParser=require('body-parser');
@@ -81,4 +83,21 @@ router.route('/issues/delete/:id').get((req,res)=>{
 });
 
 app.use('/',router);
-app.listen(4000,()=>console.log("express ser"));
+app.listen(4000,()=>console.log("express ser"));*/
+var express= require('express');
+var bodyParser= require('body-parser');
+var cors=require('cors');
+var port= 4000;
+var app = express();
+var calController=require('./controllers/todoControl.js');
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.set ('view engine','ejs');
+app.use(cors());
+app.use(bodyParser.json());
+
+// leaving the static part right now
+//app.use(express.static(./public));
+calController(app);//firing controller
+
+app.listen(port);//listening
+console.log("you are  listening to port 4000");
