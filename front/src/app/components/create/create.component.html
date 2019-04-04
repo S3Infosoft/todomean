@@ -1,0 +1,143 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<body>
+<!-- Dropdown Card Example -->
+<div id="card-list">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Create a Todo</h6>
+                <div class="dropdown no-arrow">
+                  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">::</div>
+
+                    <a class="dropdown-item" [routerLink]="['/list']">List</a>
+
+                  </div>
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+<div>
+
+  <mat-card>
+    <section class="mat-typography">
+      <h3> What new you have to do?  </h3>
+    </section>
+
+    <br>
+    <form [formGroup]="createForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='Issue Title' formControlName="title" #title>
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder='Description' formControlName="description" #description>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <mat-select placeholder="Severity" formControlName="severity" #severity>
+              <mat-option value="Low">Low</mat-option>
+              <mat-option value="Medium">Medium</mat-option>
+              <mat-option value="High">High</mat-option>
+              </mat-select>
+            </mat-form-field>
+          <!--  <mat-form-field class="field-full-width">
+              <input matInput [matDatepicker]="dueDate" placeholder="Expected Completion date">
+     <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+     <mat-datepicker #dueDate></mat-datepicker>
+              </mat-form-field>-->
+
+            <br><br>
+          <!--  <button mat-raised-button  color="accent" routerLink="/list">Back</button><br>-->
+          <a routerLink="/list" class="btn btn-primary btn-icon-split" style="margin-right:20px;">
+            <span class="icon text-white-50">
+              <i class="fas fa-flag"></i>
+            </span>
+            <span class="text">  Back       </span>
+          </a>
+
+
+<a href="#" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-check"></i>
+                    </span>
+            <button type="submit" (click)="addIssue(title.value, description.value, severity.value,dueDate.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button  color="primary">Save </button>
+        </a>
+        </form></mat-card></div>
+          </div></div></div>
+          <div id="page-top">
+
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+
+              <!-- Sidebar -->
+              <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                  <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                  </div>
+                  <div class="sidebar-brand-text mx-3"> TODO <sup>*</sup></div>
+                </a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/list']">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>LIST OF TODOS</span></a>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                  UTILITIES
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+                  <a class="nav-link collapsed" [routerLink]="['/create']" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Create a TODO</span>
+                  </a>
+                <!--  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                      <h6 class="collapse-header">Custom Components:</h6>
+                      <a class="collapse-item" href="buttons.html">Buttons</a>
+                      <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                  </div>-->
+                </li>
+
+                <!-- Nav Item - Utilities Collapse Menu -->
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                  <i class="fas fa-fw fa-wrench"></i>
+                  <span>Utilities</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                  <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                  </div>
+                </div>
+              </li>
+
+
+
+              </ul></div>
+              <!-- End of Sidebar -->
+
+              <!-- Content Wrapper -->
+            </div>
+          </body>

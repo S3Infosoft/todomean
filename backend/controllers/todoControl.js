@@ -2,7 +2,7 @@ var bodyParser= require('body-parser');
 var mongoose= require('mongoose');
 
   var ObjectId = mongoose.Schema.Types.ObjectId;
-//var DateOnly = require('mongoose-dateonly')(mongoose);
+var DateOnly = require('mongoose-dateonly')(mongoose);
 //connection
 mongoose.connect('mongodb://angtest:angtest1@ds159025.mlab.com:59025/todonew');
 const connection =mongoose.connection;
@@ -15,6 +15,7 @@ var Issue=new mongoose.Schema({
   title: String,
   description: String,
   severity:String,
+  dueDate:DateOnly,
 
     //default:'Open'
 });
@@ -79,9 +80,9 @@ app.post("/issues/add",urlencodedParser,function(req,res){
   });
   app.post("/issues/update/:id",function(req,res,next){
     //get data from the view and store it to mango db
-var idO=ObjectId.fromString(req.params.id);
 
-    TodoM.findById(idO,(err,issues)=>{
+
+    TodoM.findById(req.params.id,(err,issues)=>{
       if(err)
         return next(new Error('could not load document'));
       else {
@@ -89,7 +90,7 @@ var idO=ObjectId.fromString(req.params.id);
 
         issues.description=req.body.description;
         issues.severity=req.body.severity;
-
+issues.dueDate=req.body.dueDate;
 
         issues.save().then(issues=>{
           res.json('update done');
