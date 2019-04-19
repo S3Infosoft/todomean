@@ -1,21 +1,25 @@
-var bodyParser= require('body-parser');
-var mongoose= require('mongoose');
 
+ var bodyParser= require('body-parser');
+var mongoose= require('mongoose');
+var User=require('../models/model.js');
+var bcrypt=require('bcrypt');
+var jwt=require('jsonwebtoken');
   var ObjectId = mongoose.Schema.Types.ObjectId;
 var DateOnly = require('mongoose-dateonly')(mongoose);
 //connection
-mongoose.connect('mongodb://angtest:angtest1@ds159025.mlab.com:59025/todonew');
-const connection =mongoose.connection;
-connection.once('open',()=>{
+//mongoose.connect('mongodb://angtest:angtest1@ds159025.mlab.com:59025/todonew');
+const connection1 =mongoose.createConnection('mongodb://angtest:angtest1@ds159025.mlab.com:59025/todonew');
+connection1.once('open',()=>{
   console.log('databse connected');
 });
+
 //schema
 var Issue=new mongoose.Schema({
 
   title: String,
   description: String,
   severity:String,
-  dueDate:DateOnly,
+dueDate:String
 
     //default:'Open'
 });
@@ -63,6 +67,8 @@ app.get('/issues/:id',function(req,res){
 });
 app.post("/issues/add",urlencodedParser,function(req,res){
   //get data from the view and store it to mango db
+  console.log(req.body.dueDate);
+    console.log(req.body.title);
   var newEv= TodoM(req.body).save(function(err,data){
       if(err) throw err;
       res.json(data);

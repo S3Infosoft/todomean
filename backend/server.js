@@ -4,7 +4,7 @@ var express=require('express');
 var cors=require('cors');
 var bodyParser=require('body-parser');
 var mongoose =require ("mongoose");
-var Issue=require('./models/issue');
+var Issue=require('./mo111111dels/issue');
 const app =express();
 
 
@@ -84,20 +84,49 @@ router.route('/issues/delete/:id').get((req,res)=>{
 
 app.use('/',router);
 app.listen(4000,()=>console.log("express ser"));*/
+const session = require('express-session');
+
+const mongoose = require('mongoose');
+const errorHandler = require('errorhandler');
+
 var express= require('express');
 var bodyParser= require('body-parser');
 var cors=require('cors');
 var port= 4000;
 var app = express();
 var calController=require('./controllers/todoControl.js');
+var userController=require('./controllers/userController.js');
+
+require('./auth/auth');
+//Configure mongoose's promise to global promise
+mongoose.connect('mongodb://caltest:caltest1@ds241664.mlab.com:41664/calenderdb');
+mongoose.connection.on('error', error => console.log(error) );
+mongoose.Promise = global.Promise;
+
+
+
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.set ('view engine','ejs');
 app.use(cors());
+app.use(require('morgan')('dev'));
 app.use(bodyParser.json());
+const routes = require('./routes/routes');
+//const secureRoute = require('./routes/secure-route');
+
+app.use('/', routes);
+//We plugin our jwt strategy as a middleware so only verified users can access this route
+//Handle errors
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.json({ error : err });
+});
+
 
 // leaving the static part right now
 //app.use(express.static(./public));
-calController(app);//firing controller
+//userController(app);
+//calController(app);//firing controller
 
 app.listen(port);//listening
 console.log("you are  listening to port 4000");
