@@ -1,8 +1,9 @@
 export interface Issue{
-  //id: String;
+  id: String;
   title: String;
   description: String;
   severity: String;
-  dueDate:Date;
-
+dueDate:String;
+userid:String;
+notebook:String;
 }

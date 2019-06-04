@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {IssueService} from '../../issue.service';
+import {IssueService} from '../../../../issue.service';
 import{FormGroup,FormBuilder,Validators} from '@angular/forms';
 import{MatSnackBar} from '@angular/material';
-import{Issue} from '../../issue.model';
+import{Issue} from '../../../../issue.model';
 import {Router,ActivatedRoute} from'@angular/router';
 @Component({
   selector: 'app-edit',
@@ -24,6 +24,7 @@ createForm(){
     severity:'',
     dueDate:''
 
+
   });
 }
   ngOnInit() {
@@ -34,7 +35,8 @@ createForm(){
         this.updateForm.get('title').setValue(this.issue.title);
         this.updateForm.get('description').setValue(this.issue.description);
         this.updateForm.get('severity').setValue(this.issue.severity);
-          this.updateForm.get('dueDate').setValue(this.issue.dueDate);
+        this.updateForm.get('dueDate').setValue(this.issue.dueDate);
+
       });
     });
   }

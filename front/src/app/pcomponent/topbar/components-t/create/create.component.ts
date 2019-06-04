@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {IssueService} from '../../issue.service';
+import {IssueService} from '../../../../issue.service';
 import {FormGroup,FormBuilder,Validators} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import{Router} from '@angular/router';
-import{Issue} from '../../issue.model';
+import{Issue} from '../../../../issue.model';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
@@ -22,12 +22,14 @@ createForm: FormGroup;
       severity:'',
       dueDate:''
 
+
     });
  }
 
  addIssue(title,description,severity,dueDate){
+   console.log(title,dueDate);
    this.issueService.addIssue(title,description,severity,dueDate).subscribe(()=>{
-     this.router.navigate([`list`]);
+     this.router.navigate(['list']);
    });
  }
 
