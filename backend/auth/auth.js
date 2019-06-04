@@ -51,9 +51,11 @@ passport.use(new JWTstrategy({
   secretOrKey : 'top_secret',
   //we expect the user to send the token as a query paramater with the name 'secret_token'
   jwtFromRequest : ExtractJWT.fromUrlQueryParameter('secret_token')
+
 }, async (token, done) => {
   try {
     //Pass the user details to the next middleware
+    console.log(token);
     return done(null, token.user);
   } catch (error) {
     done(error);
