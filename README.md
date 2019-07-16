@@ -1,5 +1,10 @@
 # TODO MANAGEMENT 
 Todo Management is a MEAN stack Web application which helps you TO manage your day to day activities.
+FEATURES:
+1 Different users can Login
+2 you can add , edit and remove a todo.
+3 Reminders are there for todos
+
 ## Installation And Usage
 Clone with https : https://github.com/S3Infosoft/todomean.git
 Or
@@ -10,11 +15,11 @@ https://nodejs.org/en/
 Run two servers one for backend(NodeJS) and other for the frontend(Angular) -
 Backend
 ``` 
-node app.js
+\backend node app.js
 ```
 Frontend
 ```
-ng serve
+\front ng serve
 ```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
