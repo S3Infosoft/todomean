@@ -17,6 +17,7 @@ Download zip .
 
 Download NodeJs from this Link:
 https://nodejs.org/en/
+
 Run two servers one for backend(NodeJS) and other for the frontend(Angular) -
 Backend
 ``` 
