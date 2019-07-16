@@ -1,9 +1,14 @@
 # TODO MANAGEMENT 
 Todo Management is a MEAN stack Web application which helps you TO manage your day to day activities.
+
 FEATURES:
+
 1 Different users can Login
+
 2 you can add , edit and remove a todo.
+
 3 Reminders are there for todos
+
 
 ## Installation And Usage
 Clone with https : https://github.com/S3Infosoft/todomean.git
